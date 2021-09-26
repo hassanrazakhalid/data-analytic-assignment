@@ -16,7 +16,7 @@ export class StudentResultComponent implements OnInit {
 
   private studentData: Student[] = []
   single: any[] = [];
-  view: any[] = [700, 400];
+  view: [number, number] = [700, 200];
 
   // options
   showXAxis: boolean = true;

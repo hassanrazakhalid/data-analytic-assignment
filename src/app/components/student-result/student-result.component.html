@@ -1,15 +1,37 @@
-<ngx-charts-bar-horizontal
+<div class="container">
+  <div class="row_1">
 
-  [results]="single"
-  [gradient]="gradient"
-  [xAxis]="showXAxis"
-  [yAxis]="showYAxis"
-  [legend]="showLegend"
-  [showXAxisLabel]="showXAxisLabel"
-  [showYAxisLabel]="showYAxisLabel"
-  [xAxisLabel]="xAxisLabel"
-  [yAxisLabel]="yAxisLabel"
-  (select)="onSelect($event)"
-  (activate)="onActivate($event)"
+    <section>
+      <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+    </section>
+
+  </div>
+
+  <div class="row_2">
+
+  </div>
+
+</div>
+
+<ngx-charts-bar-horizontal [view]="view" [results]="single" [gradient]="gradient" [xAxis]="showXAxis"
+  [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+  [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" (select)="onSelect($event)" (activate)="onActivate($event)"
   (deactivate)="onDeactivate($event)">
 </ngx-charts-bar-horizontal>
+
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .row_1 {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .row_2 {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
