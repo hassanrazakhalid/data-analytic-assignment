@@ -1,48 +1,68 @@
 <div class="container">
-  <div class="col_1">
-<!-- row 1 -->
-    <div style="display: flex; flex-direction: row;">By Question</div>
-<!-- row 2 -->
-    <app-tree-select
-    [task]="countMultiSelect"
-     style="display: flex; flex-direction: row;"></app-tree-select>
-<!-- row 3 -->
-    <app-tree-select
-    [task]="percentMultiSelect"
-     style="display: flex; flex-direction: row;"></app-tree-select>
-
+  <div style="display: flex; flex-direction: row; gap: 10px;">
+    <h3 style="display: flex; flex-direction: column; font-weight: bold;">Results</h3>
+    <div style="display: flex; flex-direction: column;">
+      <mat-form-field floatLabel="always" appearance="fill">
+        <mat-label>Favorite food</mat-label>
+        <mat-select >
+          <mat-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
+  <div style="display: flex;flex-direction: row;gap: 10 px;">
+    <div class="col_1">
+      <!-- row 1 -->
+      <div style="display: flex; flex-direction: row;font-weight: bold;text-decoration-line: underline;text-decoration-style: solid;">By Question</div>
+      <!-- row 2 -->
+      <app-tree-select [task]="countMultiSelect" style="display: flex; flex-direction: row;"></app-tree-select>
+      <!-- row 3 -->
+      <app-tree-select [task]="percentMultiSelect" style="display: flex; flex-direction: row;"></app-tree-select>
 
-  <div class="col_2">
+    </div>
 
-    <section>
-      <mat-checkbox class="example-margin">Check me!</mat-checkbox>
-    </section>
+    <div class="col_2">
 
+      <section style="display:flex; flex-direction: row; justify-content: center;">
+        <mat-checkbox class="example-margin">Not attempted Count</mat-checkbox>
+      </section>
+
+      <ngx-charts-bar-horizontal style="display:flex; flex-direction: row;" [view]="view" [results]="single"
+        [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel" (select)="onSelect($event)" (activate)="onActivate($event)"
+        (deactivate)="onDeactivate($event)">
+      </ngx-charts-bar-horizontal>
+
+    </div>
   </div>
 
 </div>
 
-<ngx-charts-bar-horizontal [view]="view" [results]="single" [gradient]="gradient" [xAxis]="showXAxis"
-  [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
-  [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" (select)="onSelect($event)" (activate)="onActivate($event)"
-  (deactivate)="onDeactivate($event)">
-</ngx-charts-bar-horizontal>
+
 
 <style>
   .container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 10 px;
+    padding: 10px;
+    margin: 10px;
+    background-color: white;
   }
 
   .col_1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 10px;
   }
 
   .col_2 {
     display: flex;
     flex-direction: column;
+    gap: 10px;
   }
 </style>

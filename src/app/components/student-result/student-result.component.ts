@@ -7,6 +7,11 @@ import { single } from './repository/data';
 import { ThemePalette } from '@angular/material/core';
 import { IMultiSelect } from 'src/app/common/multi-select.model';
 
+interface Food {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-student-result',
   templateUrl: './student-result.component.html',
@@ -55,6 +60,13 @@ export class StudentResultComponent implements OnInit {
       {name: 'Attempt Percentage', completed: false, color: 'primary'}
     ]
   }
+
+
+  foods: Food[] = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'}
+  ];
 
 
   constructor(private _studentRepository: StudentRepository) {

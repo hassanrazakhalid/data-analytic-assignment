@@ -7,7 +7,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StudentResultComponent } from './components/student-result/student-result.component';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
 import { TreeSelectComponent } from './components/student-result/helper-components/tree-select/tree-select.component';
 
 @NgModule({
@@ -23,8 +24,9 @@ import { TreeSelectComponent } from './components/student-result/helper-componen
     FormsModule,
     NgxChartsModule,
     BrowserAnimationsModule,
-//Material Moduls
-MatCheckboxModule
+    //Material Moduls
+    MatCheckboxModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
