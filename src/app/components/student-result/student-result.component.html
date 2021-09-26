@@ -1,13 +1,23 @@
 <div class="container">
-  <div class="row_1">
+  <div class="col_1">
+<!-- row 1 -->
+    <div style="display: flex; flex-direction: row;">By Question</div>
+<!-- row 2 -->
+    <app-tree-select
+    [task]="countMultiSelect"
+     style="display: flex; flex-direction: row;"></app-tree-select>
+<!-- row 3 -->
+    <app-tree-select
+    [task]="percentMultiSelect"
+     style="display: flex; flex-direction: row;"></app-tree-select>
+
+  </div>
+
+  <div class="col_2">
 
     <section>
       <mat-checkbox class="example-margin">Check me!</mat-checkbox>
     </section>
-
-  </div>
-
-  <div class="row_2">
 
   </div>
 
@@ -22,15 +32,16 @@
 <style>
   .container {
     display: flex;
-    flex-direction: column;
-  }
-
-  .row_1 {
-    display: flex;
     flex-direction: row;
   }
 
-  .row_2 {
+  .col_1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .col_2 {
     display: flex;
     flex-direction: column;
   }

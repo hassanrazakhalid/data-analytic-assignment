@@ -4,7 +4,8 @@ import { Student } from 'src/app/models/student';
 import { StudentResult } from 'src/app/models/student-result';
 import { StudentRepository } from './repository/student-repository';
 import { single } from './repository/data';
-
+import { ThemePalette } from '@angular/material/core';
+import { IMultiSelect } from 'src/app/common/multi-select.model';
 
 @Component({
   selector: 'app-student-result',
@@ -32,6 +33,28 @@ export class StudentResultComponent implements OnInit {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
+  countMultiSelect:  IMultiSelect = {
+    name: 'By Count',
+    completed: false,
+    color: 'primary',
+    subtasks: [
+      {name: 'Total Attempt', completed: false, color: 'primary'},
+      {name: 'Correct Attempts', completed: false, color: 'primary'},
+      {name: 'Wrong Attempt', completed: false, color: 'primary'},
+      {name: 'Not Attempted', completed: false, color: 'primary'},
+    ]
+  };
+
+  percentMultiSelect:  IMultiSelect = {
+    name: 'By Percent',
+    completed: false,
+    color: 'primary',
+    subtasks: [
+      {name: 'Correct Percentage', completed: false, color: 'primary'},
+      {name: 'Wrong Percentage', completed: false, color: 'primary'},
+      {name: 'Attempt Percentage', completed: false, color: 'primary'}
+    ]
+  }
 
 
   constructor(private _studentRepository: StudentRepository) {
@@ -80,4 +103,8 @@ export class StudentResultComponent implements OnInit {
   onDeactivate(data: any): void {
     console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
+
+  //
+
+
 }
