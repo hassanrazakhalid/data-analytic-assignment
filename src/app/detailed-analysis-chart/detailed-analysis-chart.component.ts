@@ -85,7 +85,7 @@ export class DetailedAnalysisChartComponent implements OnInit {
   // options
   showXAxis: boolean = true;
   showYAxis: boolean = true;
-  gradient: boolean = true;
+  gradient: boolean = false;
   showLegend: boolean = true;
   showXAxisLabel: boolean = true;
   xAxisLabel: string = 'Top';
@@ -142,5 +142,8 @@ export class DetailedAnalysisChartComponent implements OnInit {
 
   onSelect(event:any) {
     console.log(event);
+  }
+  YTickFormatting(num: any){
+        return num.toLocaleString()+'%';
   }
 }
