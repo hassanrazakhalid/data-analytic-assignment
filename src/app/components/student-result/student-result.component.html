@@ -1,19 +1,20 @@
 <div class="container">
-  <div style="display: flex; flex-direction: row; gap: 10px;">
-    <h3 style="display: flex; flex-direction: column; font-weight: bold;">Results</h3>
-    <div style="display: flex; flex-direction: column;">
-      <mat-form-field floatLabel="always" appearance="fill">
-        <mat-label>Favorite food</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let food of foods" [value]="food.value">
-            {{food.viewValue}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </div>
+
   <div style="display: flex;flex-direction: row;gap: 10 px;">
     <div class="col_1">
+      <div style="display: flex; flex-direction: row; gap: 10px;">
+        <h3 style="display: flex; flex-direction: column; font-weight: bold;">Results</h3>
+        <div style="display: flex; flex-direction: column;">
+          <mat-form-field floatLabel="always" appearance="fill">
+            <mat-label>Favorite food</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
       <!-- row 1 -->
       <div
         style="display: flex; flex-direction: row;font-weight: bold;text-decoration-line: underline;text-decoration-style: solid;">
@@ -67,11 +68,13 @@
     flex-direction: column;
     justify-content: center;
     gap: 10px;
+    flex: 50%;
   }
 
   .col_2 {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    flex: 50%
   }
 </style>

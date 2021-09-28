@@ -10,7 +10,8 @@ export class StudentResult implements IChartChild {
     public topic: Topic,
     public marks?: number
   ){
-    this.name = `${topic}-${questionNo}`
+    // this.name = `${topic}-${questionNo}`
+    this.name = `${questionNo}`
     this.value = marks ?? 0
   }
 
