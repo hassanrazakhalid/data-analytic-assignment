@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Student } from '../models/student';
 
 @Component({
   selector: 'app-detailed-analysis-chart',
   templateUrl: './detailed-analysis-chart.component.html',
   styleUrls: ['./detailed-analysis-chart.component.scss']
 })
-export class DetailedAnalysisChartComponent {
+export class DetailedAnalysisChartComponent implements OnInit {
+
+  @Input() dataSource: Student[] = []
   multi: any[] = [
     {
       "name": "Germany",
@@ -17,14 +20,14 @@ export class DetailedAnalysisChartComponent {
         {
           "name": "2011",
           "value": 89400000
-        }, 
+        },
         {
           "name": "1990",
           "value": 62000000
         }
       ]
     },
-  
+
     {
       "name": "USA",
       "series": [
@@ -42,7 +45,7 @@ export class DetailedAnalysisChartComponent {
         }
       ]
     },
-  
+
     {
       "name": "France",
       "series": [
@@ -74,7 +77,7 @@ export class DetailedAnalysisChartComponent {
       ]
     }
   ];
-  
+
   view: [number,number] = [700, 400];
 
   // options
@@ -87,8 +90,21 @@ export class DetailedAnalysisChartComponent {
   showYAxisLabel: boolean = true;
   yAxisLabel: string = 'Normalized Population';
 
- 
+
   constructor() {
+  }
+  ngOnInit(): void {
+
+   const allStudentsResults = this.dataSource
+   .map(x => x.result)
+   .reduce( (a, b) => {
+     return a.concat(b)
+   } )
+
+   const totalCount = allStudentsResults.length
+   const correct = allStudentsResults.filter(x => (x.marks ?? 0) > 0).length
+   const inCorrect = allStudentsResults.filter(x => (x.marks ?? -1) == 0).length
+   const notAttempted = allStudentsResults.filter(x => x.marks == null).length
   }
 
   onSelect(event:any) {

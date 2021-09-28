@@ -5,12 +5,15 @@ export class Student implements IChartParent {
 
     result: StudentResult[] = []
 
-    get series(): IChartChild[] {
-        return this.result
-    }
+    // series(): IChartChild[] {
+    //     return this.result
+    // }
     constructor(
       public name: string
     ) {}
+
+    get series(): IChartChild[] { return this.result }
+
 }
 
 

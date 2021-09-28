@@ -1,11 +1,11 @@
 export interface IChartParent {
 
-  get name(): string
+  name: string
   get series(): IChartChild[]
 }
 
 export interface IChartChild {
 
-  get name(): string
-  get value(): number
+  name: string
+  value: number
 }

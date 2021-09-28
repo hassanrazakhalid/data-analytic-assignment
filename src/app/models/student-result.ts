@@ -3,18 +3,15 @@ import { IChartChild } from "../common/interfaces/i-chart-interface";
 
 export class StudentResult implements IChartChild {
 
+  name: string
+  value: number
   constructor(
     public questionNo: string,
     public topic: Topic,
     public marks?: number
   ){
-
-  }
-  get name(): string {
-    return `${this.topic}-${this.questionNo}`
+    this.name = `${topic}-${questionNo}`
+    this.value = marks ?? 0
   }
 
-  get value(): number {
-    return this.marks ?? 0
-  }
 }

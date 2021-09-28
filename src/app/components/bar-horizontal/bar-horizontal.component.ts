@@ -10,6 +10,8 @@ export class BarHorizontalComponent implements OnInit {
 
   @Input() dataSource: any[] = []
 
+  multi: any[] = [];
+
   view: [number, number] = [700, 200];
 
   // options
@@ -31,6 +33,8 @@ export class BarHorizontalComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+    // this.multi = this.multi.concat(multiData)
   }
 
   onSelect(data:any): void {
