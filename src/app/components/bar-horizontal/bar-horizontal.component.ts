@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { LegendPosition } from '@swimlane/ngx-charts';
 import { Filters } from 'src/app/common/enums/enums';
 import { IChartChild, IChartParent } from 'src/app/common/interfaces/i-chart-interface';
@@ -9,7 +9,7 @@ import { Student } from 'src/app/models/student';
   templateUrl: './bar-horizontal.component.html',
   styleUrls: ['./bar-horizontal.component.scss']
 })
-export class BarHorizontalComponent implements OnInit {
+export class BarHorizontalComponent implements OnInit, OnChanges {
 
   @Input() dataSource: Student[] = []
 
@@ -28,9 +28,9 @@ export class BarHorizontalComponent implements OnInit {
   showLegend: boolean = true;
   legendPosition: LegendPosition = LegendPosition.Below;
   showXAxisLabel: boolean = true;
-  yAxisLabel: string = 'Country';
+  yAxisLabel: string = 'Question Numbers';
   showYAxisLabel: boolean = true;
-  xAxisLabel = 'Population';
+  xAxisLabel = 'Correct';
 
   colorScheme = {
     domain: ['#5AA454', '#C7B42C', '#AAAAAA']
@@ -38,18 +38,45 @@ export class BarHorizontalComponent implements OnInit {
   schemeType: string = 'linear';
 
   constructor() { }
+  ngOnChanges(changes: SimpleChanges): void {
+
+    for (const propName in changes) {
+      const change = changes[propName];
+      if(propName ==  'filters') {
+        this.filters = change.currentValue as Filters []
+        this.refreshData()
+      }
+      console.log(change)
+      // const to  = JSON.stringify(change.currentValue);
+      // const from = JSON.stringify(change.previousValue);
+      // const changeLog = `${propName}: changed from ${from} to ${to} `;
+      // this.changelog.push(changeLog);
+ }
+    if(changes.filters) {
+      // const s = (changes as any).filters as Filters[]
+      // this.filters = s
+    }
+    console.log(changes)
+  }
 
   ngOnInit(): void {
 
+
+  }
+
+  private refreshData() {
     const possibleQuestions = this.dataSource[0].result.map(x => x.questionNo)
     const allStudentsResults = this.dataSource
       .map(x => x.result)
       .reduce((a, b) => {
         return a.concat(b)
       })
+    let counter = 0
 
     const formattedDatasource: IChartParent[] = []
     possibleQuestions.forEach(questionString => {
+      counter += 1
+      if (counter >= 7) return;
 
       const parent: IChartParent = {
         name: questionString,
@@ -61,6 +88,7 @@ export class BarHorizontalComponent implements OnInit {
       const notAttempted = resultOfSingleQuestion.filter(x => x.marks == null)
 
       this.filters.forEach(filter => {
+
         let newValue = 0
         switch (filter) {
           case Filters.TotalAttempt:
@@ -84,8 +112,9 @@ export class BarHorizontalComponent implements OnInit {
         parent.series.push(child)
       })
       formattedDatasource.push(parent)
+
     })
-  this.formattedStudentData = formattedDatasource as any []
+    this.formattedStudentData = formattedDatasource as any[]
   }
 
   onSelect(data: any): void {

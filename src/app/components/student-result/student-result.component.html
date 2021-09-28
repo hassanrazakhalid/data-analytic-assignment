@@ -20,7 +20,10 @@
         style="display: flex; flex-direction: row;font-weight: bold;text-decoration-line: underline;text-decoration-style: solid;">
         By Question</div>
       <!-- row 2 -->
-      <app-tree-select [task]="countMultiSelect" style="display: flex; flex-direction: row;"></app-tree-select>
+      <app-tree-select
+      [task]="countMultiSelect"
+      (filterChanged)="onSubjectFilterChanged($event)"
+       style="display: flex; flex-direction: row;"></app-tree-select>
       <!-- row 3 -->
       <app-tree-select [task]="percentMultiSelect" style="display: flex; flex-direction: row;"></app-tree-select>
 
@@ -34,6 +37,7 @@
 
       <app-bar-horizontal
       [dataSource]="studentData"
+      [filters]="filters"
       style="display:flex; flex-direction: row;"
       ></app-bar-horizontal>
       <!-- <ngx-charts-bar-horizontal style="display:flex; flex-direction: row;" [view]="view" [results]="single"
