@@ -1,9 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { from, Observable } from "rxjs";
 import { map } from 'rxjs/operators';
+import { Topic } from "src/app/common/enums";
 import { Student } from "src/app/models/student";
-
+import { StudentResult } from "src/app/models/student-result";
+import * as data from '../../../../assets/mock-data.json';
 
 @Injectable()
 export class StudentRepository {
@@ -12,15 +14,24 @@ export class StudentRepository {
 
   }
 
-  public getStudentResult(): Observable<Student []> {
+  public getStudentResult(): Observable<Student[]> {
+    const dataArray = (data as any).default
+    console.log(dataArray)
+    const studentsTransformed: Student[] = dataArray.map((studentObj: any) => {
 
-    return this._httpClient.get('https://docs.google.com/spreadsheets/d/1U5ydyh0CA--61HTgdrnUM1i8ENh9Y4FpWh4Zo-E39_A/edit#gid=0')
-    .pipe(
-      map( res => {
+      const newStudent = new Student(studentObj.name)
+      newStudent.result = studentObj.result.map((res: any) => {
+        const newSubject = new StudentResult(res.questionNo, res.subject as Topic, res.result)
+        return newSubject
+      });
+      return newStudent
+    });
+    return new Observable<Student[]>(subscriber => {
+      subscriber.next(studentsTransformed)
+      subscriber.complete()
+      subscriber.unsubscribe()
 
-        const result: Student[] = []
-        return result
-      })
-    )
+
+    })
   }
 }

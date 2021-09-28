@@ -5,7 +5,7 @@ export class StudentResult {
   constructor(
     public questionNo: string,
     public topic: Topic,
-    public marks: number
+    public marks?: number
   ){
 
   }
