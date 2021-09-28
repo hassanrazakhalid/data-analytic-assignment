@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Topic } from 'src/app/common/enums/enums';
+import { Filters, Topic } from 'src/app/common/enums/enums';
 import { Student } from 'src/app/models/student';
 import { StudentResult } from 'src/app/models/student-result';
 import { StudentRepository } from './repository/student-repository';
@@ -21,17 +21,17 @@ interface Food {
 export class StudentResultComponent implements OnInit {
 
   studentData: Student[] = []
-
+  filters: Filters[] = []
 
   countMultiSelect:  IMultiSelect = {
     name: 'By Count',
     completed: false,
     color: 'primary',
     subtasks: [
-      {name: 'Total Attempt', completed: false, color: 'primary'},
-      {name: 'Correct Attempts', completed: false, color: 'primary'},
-      {name: 'Wrong Attempt', completed: false, color: 'primary'},
-      {name: 'Not Attempted', completed: false, color: 'primary'},
+      {name: Filters.TotalAttempt, completed: false, color: 'primary'},
+      {name: Filters.CorrectAttempt, completed: false, color: 'primary'},
+      {name: Filters.WrongAttempt, completed: false, color: 'primary'},
+      {name: Filters.NotAttempted, completed: false, color: 'primary'},
     ]
   };
 
@@ -69,6 +69,10 @@ export class StudentResultComponent implements OnInit {
         console.log(res)
       }
     })
+  }
+
+  onSubjectFilterChanged(changed: string []) {
+    this.filters = changed.map(x => x as Filters)
   }
 
   onSelect(data: any): void {

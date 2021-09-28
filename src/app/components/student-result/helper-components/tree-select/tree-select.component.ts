@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { ThemePalette } from '@angular/material/core';
 import { IMultiSelect } from 'src/app/common/interfaces/multi-select.model';
 
@@ -12,6 +13,10 @@ export class TreeSelectComponent implements OnInit {
   @Input()
   task!: IMultiSelect
   allComplete: boolean = false;
+
+  @Output()
+  filterChanged= new EventEmitter<string []> ()
+
   constructor() {
    }
 
@@ -29,12 +34,25 @@ export class TreeSelectComponent implements OnInit {
     return this.task.subtasks.filter(t => t.completed).length > 0 && !this.allComplete;
   }
 
+  private emitOutout() {
+
+    const allFilters = this.task.subtasks!.filter(t => t.completed).map(x => x.name)
+    this.filterChanged.emit(allFilters)
+  }
+
+  onSelectionChanged(value: MatCheckboxChange) {
+    this.emitOutout()
+  }
+
   setAll(completed: boolean) {
+    console.log('SetAll Called')
     this.allComplete = completed;
     if (this.task.subtasks == null) {
       return;
     }
     this.task.subtasks.forEach(t => t.completed = completed);
+
+
   }
 
 }
