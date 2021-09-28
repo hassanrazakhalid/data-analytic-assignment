@@ -11,7 +11,11 @@ export enum Filters {
   TotalAttempt = "Total Attempt",
   CorrectAttempt = "Correct Attempt",
   WrongAttempt = "Wrong Attempt",
-  NotAttempted = "Not Attempted"
+  NotAttempted = "Not Attempted",
+
+  CorrectPercentage = "Correct Percentage",
+  WrongPercentage = "Wrong Percentage",
+  AttemptPercentage = "Attempt Percentage",
 }
 
 

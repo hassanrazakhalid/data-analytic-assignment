@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Filters, Topic } from 'src/app/common/enums/enums';
 import { Student } from 'src/app/models/student';
 import { StudentResult } from 'src/app/models/student-result';
@@ -6,6 +6,7 @@ import { StudentRepository } from './repository/student-repository';
 import { single } from './repository/data';
 import { ThemePalette } from '@angular/material/core';
 import { IMultiSelect } from 'src/app/common/interfaces/multi-select.model';
+import { TreeSelectComponent } from './helper-components/tree-select/tree-select.component';
 
 interface Food {
   value: string;
@@ -22,6 +23,10 @@ export class StudentResultComponent implements OnInit {
 
   studentData: Student[] = []
   filters: Filters[] = []
+  percentFilters: Filters[] = []
+
+  @ViewChild('filterTreeSelect') filterTreeSelect!: TreeSelectComponent
+  @ViewChild('filterPercentSelect') filterPercentSelect!: TreeSelectComponent
 
   countMultiSelect:  IMultiSelect = {
     name: 'By Count',
@@ -40,9 +45,9 @@ export class StudentResultComponent implements OnInit {
     completed: false,
     color: 'primary',
     subtasks: [
-      {name: 'Correct Percentage', completed: false, color: 'primary'},
-      {name: 'Wrong Percentage', completed: false, color: 'primary'},
-      {name: 'Attempt Percentage', completed: false, color: 'primary'}
+      {name: Filters.CorrectPercentage, completed: false, color: 'primary'},
+      {name: Filters.WrongPercentage, completed: false, color: 'primary'},
+      {name: Filters.AttemptPercentage, completed: false, color: 'primary'}
     ]
   }
 
@@ -72,22 +77,16 @@ export class StudentResultComponent implements OnInit {
   }
 
   onSubjectFilterChanged(changed: string []) {
+    // this.percentFilters = []
     this.filters = changed.map(x => x as Filters)
+    this.filterPercentSelect.uncheckAll()
   }
 
-  onSelect(data: any): void {
-    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
-  }
-
-  onActivate(data: any): void {
-    console.log('Activate', JSON.parse(JSON.stringify(data)));
-  }
-
-  onDeactivate(data: any): void {
-    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
+  onPercentFilterChanged(changed: string []) {
+    // this.filters = []
+    this.filters = changed.map(x => x as Filters)
+    this.filterTreeSelect.uncheckAll()
   }
 
   //
-
-
 }
