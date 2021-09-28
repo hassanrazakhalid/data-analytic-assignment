@@ -92,6 +92,7 @@ export class DetailedAnalysisChartComponent implements OnInit {
   yAxisLabel: string = 'Normalized Population';
 
 
+  subjectArray :Topic[] = [Topic.Algebra, Topic.Arithemetic, Topic.Probability, Topic.Trigonometry];
   constructor() {
   }
   ngOnInit(): void {
@@ -103,12 +104,14 @@ export class DetailedAnalysisChartComponent implements OnInit {
    } )
 
    const totalCount = allStudentsResults.length
-   const correct = allStudentsResults.filter(x => (x.topic == Topic.Trigonometry)).length
-   const correct1 = allStudentsResults.filter(x => (x.topic == Topic.Probability))
-   const correct2 = allStudentsResults.filter(x => (x.topic == Topic.Arithemetic))
-   const correct3 = allStudentsResults.filter(x => (x.topic == Topic.Algebra))
-   const inCorrect = allStudentsResults.filter(x => (x.marks ?? -1) == 0).length
-   const notAttempted = allStudentsResults.filter(x => x.marks == null).length
+   this.subjectArray.forEach(subject=>{  
+        
+    const TrigCorrect     = allStudentsResults.filter(x => (x.topic == subject && x.value== 1)).length
+   const TrigIncorrect   = allStudentsResults.filter(x => (x.topic == subject && x.value== 0)).length
+   const TrigUnAttempted = allStudentsResults.filter(x => (x.topic == subject && x.value== null)).length
+   })
+   
+
   }
 
   onSelect(event:any) {
