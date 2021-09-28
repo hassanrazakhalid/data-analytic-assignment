@@ -40,6 +40,12 @@ export class TreeSelectComponent implements OnInit {
     this.filterChanged.emit(allFilters)
   }
 
+  uncheckAll() {
+    this.task.subtasks!.forEach(x => {
+      x.completed = false
+    })
+  }
+
   onSelectionChanged(value: MatCheckboxChange) {
     this.emitOutout()
   }

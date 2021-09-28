@@ -16,7 +16,10 @@ export class BarHorizontalComponent implements OnInit, OnChanges {
   formattedStudentData: Student[] = [];
 
   @Input()
-  filters: Filters[] = [Filters.CorrectAttempt, Filters.NotAttempted, Filters.NotAttempted, Filters.WrongAttempt]
+  filters: Filters[] = []
+
+  // @Input()
+  // percentFilters: Filters[] = []
 
   // view: [number, number] = [700, 200];
   view: [number, number] = [0, 0];
@@ -42,17 +45,21 @@ export class BarHorizontalComponent implements OnInit, OnChanges {
 
     for (const propName in changes) {
       const change = changes[propName];
-      if(propName ==  'filters') {
-        this.filters = change.currentValue as Filters []
+      if (propName == 'filters') {
+        this.filters = change.currentValue as Filters[]
         this.refreshData()
       }
+      // else if (propName == 'percentFilters') {
+      //   this.percentFilters = change.currentValue as Filters[]
+      //   this.refreshData()
+      // }
       console.log(change)
       // const to  = JSON.stringify(change.currentValue);
       // const from = JSON.stringify(change.previousValue);
       // const changeLog = `${propName}: changed from ${from} to ${to} `;
       // this.changelog.push(changeLog);
- }
-    if(changes.filters) {
+    }
+    if (changes.filters) {
       // const s = (changes as any).filters as Filters[]
       // this.filters = s
     }
@@ -102,6 +109,16 @@ export class BarHorizontalComponent implements OnInit, OnChanges {
             break;
           case Filters.NotAttempted:
             newValue = notAttempted.length
+            break;
+
+          case Filters.AttemptPercentage:
+            newValue = (wrongAnswers.length + correctAnswers.length) / resultOfSingleQuestion.length
+            break;
+          case Filters.WrongPercentage:
+            newValue = wrongAnswers.length / resultOfSingleQuestion.length
+            break;
+          case Filters.CorrectPercentage:
+            newValue = correctAnswers.length / resultOfSingleQuestion.length
             break;
         }
 
