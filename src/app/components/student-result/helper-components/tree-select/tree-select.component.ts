@@ -51,6 +51,7 @@ export class TreeSelectComponent implements OnInit {
       return;
     }
     this.task.subtasks.forEach(t => t.completed = completed);
+    this.emitOutout()
 
 
   }

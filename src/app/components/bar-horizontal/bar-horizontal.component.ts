@@ -28,9 +28,9 @@ export class BarHorizontalComponent implements OnInit, OnChanges {
   showLegend: boolean = true;
   legendPosition: LegendPosition = LegendPosition.Below;
   showXAxisLabel: boolean = true;
-  yAxisLabel: string = 'Country';
+  yAxisLabel: string = 'Question Numbers';
   showYAxisLabel: boolean = true;
-  xAxisLabel = 'Population';
+  xAxisLabel = 'Correct';
 
   colorScheme = {
     domain: ['#5AA454', '#C7B42C', '#AAAAAA']
@@ -86,7 +86,6 @@ export class BarHorizontalComponent implements OnInit, OnChanges {
       const correctAnswers = resultOfSingleQuestion.filter(x => (x.marks ?? 0) > 0)
       const wrongAnswers = resultOfSingleQuestion.filter(x => (x.marks ?? -1) == 0)
       const notAttempted = resultOfSingleQuestion.filter(x => x.marks == null)
-
 
       this.filters.forEach(filter => {
 
