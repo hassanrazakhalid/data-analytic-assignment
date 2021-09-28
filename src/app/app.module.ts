@@ -10,12 +10,14 @@ import { StudentResultComponent } from './components/student-result/student-resu
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { TreeSelectComponent } from './components/student-result/helper-components/tree-select/tree-select.component';
+import { BarHorizontalComponent } from './components/bar-horizontal/bar-horizontal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StudentResultComponent,
-    TreeSelectComponent
+    TreeSelectComponent,
+    BarHorizontalComponent
   ],
   imports: [
     BrowserModule,

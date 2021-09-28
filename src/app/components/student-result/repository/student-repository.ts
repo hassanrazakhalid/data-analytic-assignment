@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { from, Observable } from "rxjs";
 import { map } from 'rxjs/operators';
-import { Topic } from "src/app/common/enums";
+import { Topic } from "src/app/common/enums/enums";
 import { Student } from "src/app/models/student";
 import { StudentResult } from "src/app/models/student-result";
 import * as data from '../../../../assets/mock-data.json';

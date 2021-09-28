@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Topic } from 'src/app/common/enums';
+import { Topic } from 'src/app/common/enums/enums';
 import { Student } from 'src/app/models/student';
 import { StudentResult } from 'src/app/models/student-result';
 import { StudentRepository } from './repository/student-repository';
 import { single } from './repository/data';
 import { ThemePalette } from '@angular/material/core';
-import { IMultiSelect } from 'src/app/common/multi-select.model';
+import { IMultiSelect } from 'src/app/common/interfaces/multi-select.model';
 
 interface Food {
   value: string;
@@ -20,23 +20,8 @@ interface Food {
 })
 export class StudentResultComponent implements OnInit {
 
-  private studentData: Student[] = []
-  single: any[] = [];
-  view: [number, number] = [700, 200];
+  studentData: Student[] = []
 
-  // options
-  showXAxis: boolean = true;
-  showYAxis: boolean = true;
-  gradient: boolean = false;
-  showLegend: boolean = true;
-  showXAxisLabel: boolean = true;
-  yAxisLabel: string = 'Country';
-  showYAxisLabel: boolean = true;
-  xAxisLabel: string = 'Population';
-
-  colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-  };
 
   countMultiSelect:  IMultiSelect = {
     name: 'By Count',
@@ -76,21 +61,6 @@ export class StudentResultComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // const student1 = new Student("Student 1")
-    // student1.result.push(new StudentResult("Q1", Topic.Trigonometry, 1))
-    // student1.result.push(new StudentResult("Q2", Topic.Probability, 1))
-    // student1.result.push(new StudentResult("Q3", Topic.Arithematics, 0))
-    // student1.result.push(new StudentResult("Q4", Topic.Trigonometry, 0))
-    // student1.result.push(new StudentResult("Q5", Topic.Trigonometry, 0))
-    // student1.result.push(new StudentResult("Q6", Topic.Probability, 1))
-
-    // const student2 = new Student("Student 2")
-    // student2.result.push(new StudentResult("Q1", Topic.Trigonometry, 1))
-    // student2.result.push(new StudentResult("Q2", Topic.Probability, 1))
-    // student2.result.push(new StudentResult("Q3", Topic.Arithematics, 1))
-    // student2.result.push(new StudentResult("Q4", Topic.Trigonometry, 1))
-    // student2.result.push(new StudentResult("Q5", Topic.Trigonometry, 0))
-    // student2.result.push(new StudentResult("Q6", Topic.Probability, 1))
     this._studentRepository.getStudentResult()
     .subscribe({
       next: (res) => {

@@ -4,7 +4,7 @@
     <div style="display: flex; flex-direction: column;">
       <mat-form-field floatLabel="always" appearance="fill">
         <mat-label>Favorite food</mat-label>
-        <mat-select >
+        <mat-select>
           <mat-option *ngFor="let food of foods" [value]="food.value">
             {{food.viewValue}}
           </mat-option>
@@ -15,7 +15,9 @@
   <div style="display: flex;flex-direction: row;gap: 10 px;">
     <div class="col_1">
       <!-- row 1 -->
-      <div style="display: flex; flex-direction: row;font-weight: bold;text-decoration-line: underline;text-decoration-style: solid;">By Question</div>
+      <div
+        style="display: flex; flex-direction: row;font-weight: bold;text-decoration-line: underline;text-decoration-style: solid;">
+        By Question</div>
       <!-- row 2 -->
       <app-tree-select [task]="countMultiSelect" style="display: flex; flex-direction: row;"></app-tree-select>
       <!-- row 3 -->
@@ -29,12 +31,18 @@
         <mat-checkbox class="example-margin">Not attempted Count</mat-checkbox>
       </section>
 
-      <ngx-charts-bar-horizontal style="display:flex; flex-direction: row;" [view]="view" [results]="single"
+      <app-bar-horizontal
+      [dataSource]="studentData"
+      style="display:flex; flex-direction: row;"
+      ></app-bar-horizontal>
+      <!-- <ngx-charts-bar-horizontal style="display:flex; flex-direction: row;" [view]="view" [results]="single"
         [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
         [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
         [yAxisLabel]="yAxisLabel" (select)="onSelect($event)" (activate)="onActivate($event)"
         (deactivate)="onDeactivate($event)">
-      </ngx-charts-bar-horizontal>
+      </ngx-charts-bar-horizontal> -->
+
+      <!-- [scheme]="colorScheme" [schemeType]="schemeType"  -->
 
     </div>
   </div>

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
-import { IMultiSelect, MultiSelectModel } from 'src/app/common/multi-select.model';
+import { IMultiSelect } from 'src/app/common/interfaces/multi-select.model';
 
 @Component({
   selector: 'app-tree-select',
