@@ -3,7 +3,7 @@
 export enum Topic {
   Trigonometry = "Trigonometry",
   Probability = "Probability",
-  Arithematics = "Arithematics",
+  Arithemetic = "Arithemetic",
   Algebra = "Algebra"
 }
 

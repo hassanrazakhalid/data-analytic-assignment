@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Topic } from '../common/enums/enums';
 import { Student } from '../models/student';
 
 @Component({
@@ -102,7 +103,10 @@ export class DetailedAnalysisChartComponent implements OnInit {
    } )
 
    const totalCount = allStudentsResults.length
-   const correct = allStudentsResults.filter(x => (x.marks ?? 0) > 0).length
+   const correct = allStudentsResults.filter(x => (x.topic == Topic.Trigonometry)).length
+   const correct1 = allStudentsResults.filter(x => (x.topic == Topic.Probability))
+   const correct2 = allStudentsResults.filter(x => (x.topic == Topic.Arithemetic))
+   const correct3 = allStudentsResults.filter(x => (x.topic == Topic.Algebra))
    const inCorrect = allStudentsResults.filter(x => (x.marks ?? -1) == 0).length
    const notAttempted = allStudentsResults.filter(x => x.marks == null).length
   }
