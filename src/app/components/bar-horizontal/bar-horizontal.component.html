@@ -1,6 +1,17 @@
-<ngx-charts-bar-horizontal-2d style="display:flex; flex-direction: row;" [view]="view" [results]="formattedStudentData"
-  [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [legendPosition]="legendPosition"
-  [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
-  [yAxisLabel]="yAxisLabel" (select)="onSelect($event)" (activate)="onActivate($event)"
+<ngx-charts-bar-horizontal-2d
+  [view]="view" 
+  [results]="formattedStudentData"
+  [gradient]="gradient" 
+  [xAxis]="showXAxis" 
+  [yAxis]="showYAxis" 
+  [legend]="showLegend" 
+  [legendPosition]="legendPosition"
+  [showXAxisLabel]="showXAxisLabel" 
+  [showYAxisLabel]="showYAxisLabel" 
+  [xAxisLabel]="xAxisLabel"
+  [yAxisLabel]="yAxisLabel"
+
+  (select)="onSelect($event)" 
+  (activate)="onActivate($event)"
   (deactivate)="onDeactivate($event)">
 </ngx-charts-bar-horizontal-2d>

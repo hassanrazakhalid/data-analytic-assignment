@@ -1,89 +1,95 @@
-<div class="container">
-
-  <div style="display: flex;flex-direction: row;gap: 10 px;">
-    <div class="col_1">
-      <div style="display: flex; flex-direction: row; gap: 10px;">
-        <h3 style="display: flex; flex-direction: column; font-weight: bold;">Results</h3>
-        <div style="display: flex; flex-direction: column;">
-          <mat-form-field floatLabel="always" appearance="fill">
-            <mat-label>Favorite food</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let food of foods" [value]="food.value">
-                {{food.viewValue}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
-      <!-- row 1 -->
-      <div
-        style="display: flex; flex-direction: row;font-weight: bold;text-decoration-line: underline;text-decoration-style: solid;">
-        By Question</div>
-      <!-- row 2 -->
-      <app-tree-select
-      #filterTreeSelect
-      [task]="countMultiSelect"
-      (filterChanged)="onSubjectFilterChanged($event)"
-       style="display: flex; flex-direction: row;"></app-tree-select>
-      <!-- row 3 -->
-      <app-tree-select
+<div class="main-bg">
+  <div class="header">
+    <h2> Test Name </h2>
+  </div>
+  <div class="content">
+    <div class="sub-header">
+      <h3>Results</h3>
+      <mat-form-field floatLabel="always" appearance="fill">
+        <mat-label>Analysis</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <section class="something">
+      <div class="single-column">
+        <h3>
+          By Question
+        </h3>
+        <app-tree-select
+        #filterTreeSelect
+        [task]="countMultiSelect"
+        (filterChanged)="onSubjectFilterChanged($event)"
+        ></app-tree-select>
+        <app-tree-select
       #filterPercentSelect
       (filterChanged)="onPercentFilterChanged($event)"
-       [task]="percentMultiSelect" style="display: flex; flex-direction: row;"></app-tree-select>
-
-    </div>
-
-    <div class="col_2">
-
-      <section style="display:flex; flex-direction: row; justify-content: center;">
-        <mat-checkbox class="example-margin">Not attempted Count</mat-checkbox>
-      </section>
-
-      <app-bar-horizontal
+       [task]="percentMultiSelect"></app-tree-select>
+      </div>
+      <div class="single-column">
+        <div class="sub-header" style="justify-content: center;">
+          <mat-checkbox class="example-margin">Not attempted Count</mat-checkbox>
+        </div>
+        <app-bar-horizontal
       [dataSource]="studentData"
       [filters]="filters"
-
-      style="display:flex; flex-direction: row;"
       ></app-bar-horizontal>
-      <!-- <ngx-charts-bar-horizontal style="display:flex; flex-direction: row;" [view]="view" [results]="single"
-        [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
-        [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
-        [yAxisLabel]="yAxisLabel" (select)="onSelect($event)" (activate)="onActivate($event)"
-        (deactivate)="onDeactivate($event)">
-      </ngx-charts-bar-horizontal> -->
-
-      <!-- [scheme]="colorScheme" [schemeType]="schemeType"  -->
-
+      </div>
+    </section>
+    <div class="sub-header">
+      <h3>Detailed Analysis</h3>
     </div>
+    <section class="something">
+      
+      <app-detailed-analysis-chart [dataSource]="studentData"></app-detailed-analysis-chart>
+    </section>
   </div>
-  <app-detailed-analysis-chart [dataSource]="studentData"></app-detailed-analysis-chart>
-
 </div>
 
 
 
+
 <style>
-  .container {
-    display: flex;
-    flex-direction: column;
-    gap: 10 px;
-    padding: 10px;
-    margin: 10px;
-    background-color: white;
-  }
+.main-bg{
+  background-color: #E5E9F4;
+  display: flex;
+  flex-direction: column;
+}
+.header{
+  display: flex;
+  flex-direction: row;
+  padding: 10px 10px 10px 10px;
+}
+.sub-header{
+  display: flex;
+  flex-direction: row;
+  gap:20px;
+  padding: 10px 20px 10px 30px;
+}
+.content{
+  background: white;
+  border:none;
+  border-radius: 10px;
+  height: 100%;
+  width: 97%;
+  align-self: center;
+}
+.something{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width:100%
+}
 
-  .col_1 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 10px;
-    flex: 50%;
-  }
-
-  .col_2 {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    flex: 50%
-  }
+h2{
+  margin:0px;
+  color: #6A8ADF;
+}
+h3{
+  font-weight:600;
+  text-decoration: underline;
+}
 </style>

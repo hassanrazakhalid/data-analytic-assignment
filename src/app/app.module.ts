@@ -12,6 +12,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { TreeSelectComponent } from './components/student-result/helper-components/tree-select/tree-select.component';
 import { BarHorizontalComponent } from './components/bar-horizontal/bar-horizontal.component';
 import { DetailedAnalysisChartComponent } from './detailed-analysis-chart/detailed-analysis-chart.component';
+import {MatToolbarModule} from '@angular/material/toolbar'; 
+
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { DetailedAnalysisChartComponent } from './detailed-analysis-chart/detail
     BrowserAnimationsModule,
     //Material Moduls
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

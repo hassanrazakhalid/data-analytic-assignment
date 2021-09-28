@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Topic } from '../common/enums/enums';
+import { Filters, Topic } from '../common/enums/enums';
+import { IChartChild, IChartParent } from '../common/interfaces/i-chart-interface';
 import { Student } from '../models/student';
 
 @Component({
@@ -87,9 +88,9 @@ export class DetailedAnalysisChartComponent implements OnInit {
   gradient: boolean = true;
   showLegend: boolean = true;
   showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Country';
-  showYAxisLabel: boolean = true;
-  yAxisLabel: string = 'Normalized Population';
+  xAxisLabel: string = 'Top';
+  showYAxisLabel: boolean = false;
+
 
 
   subjectArray :Topic[] = [Topic.Algebra, Topic.Arithemetic, Topic.Probability, Topic.Trigonometry];
@@ -104,14 +105,39 @@ export class DetailedAnalysisChartComponent implements OnInit {
    } )
 
    const totalCount = allStudentsResults.length
+   const formattedDatasource: IChartParent[] = []
+
    this.subjectArray.forEach(subject=>{  
         
+    const parent: IChartParent = {
+      name: subject,
+      series: new Array<IChartChild>()
+    }
+
     const TrigCorrect     = allStudentsResults.filter(x => (x.topic == subject && x.value== 1)).length
    const TrigIncorrect   = allStudentsResults.filter(x => (x.topic == subject && x.value== 0)).length
    const TrigUnAttempted = allStudentsResults.filter(x => (x.topic == subject && x.value== null)).length
+
+   const child1: IChartChild = {
+     name: Filters.CorrectAttempt,
+     value: TrigCorrect
+   }
+   const child2: IChartChild = {
+    name: Filters.WrongAttempt,
+    value: TrigIncorrect
+  }
+  const child3: IChartChild = {
+    name: Filters.NotAttempted,
+    value: TrigUnAttempted
+  }
+   parent.series.push(child1)
+   parent.series.push(child2)
+   parent.series.push(child3)
+
+   formattedDatasource.push(parent)
    })
    
-
+   this.multi = formattedDatasource as any[]
   }
 
   onSelect(event:any) {

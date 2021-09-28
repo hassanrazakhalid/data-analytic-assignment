@@ -31,13 +31,14 @@ export class BarHorizontalComponent implements OnInit, OnChanges {
   showLegend: boolean = true;
   legendPosition: LegendPosition = LegendPosition.Below;
   showXAxisLabel: boolean = true;
-  yAxisLabel: string = 'Question Numbers';
+  yAxisLabel: string = 'Question Number';
   showYAxisLabel: boolean = true;
   xAxisLabel = 'Correct';
 
-  colorScheme = {
-    domain: ['#5AA454', '#C7B42C', '#AAAAAA']
-  };
+  colorScheme = [
+    {"name": "a","color": "#ff0000"},
+     {"name": "b","color": "#ff0000"}
+  ];
   schemeType: string = 'linear';
 
   constructor() { }
@@ -49,19 +50,9 @@ export class BarHorizontalComponent implements OnInit, OnChanges {
         this.filters = change.currentValue as Filters[]
         this.refreshData()
       }
-      // else if (propName == 'percentFilters') {
-      //   this.percentFilters = change.currentValue as Filters[]
-      //   this.refreshData()
-      // }
+
       console.log(change)
-      // const to  = JSON.stringify(change.currentValue);
-      // const from = JSON.stringify(change.previousValue);
-      // const changeLog = `${propName}: changed from ${from} to ${to} `;
-      // this.changelog.push(changeLog);
-    }
-    if (changes.filters) {
-      // const s = (changes as any).filters as Filters[]
-      // this.filters = s
+
     }
     console.log(changes)
   }
